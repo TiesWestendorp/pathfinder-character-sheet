@@ -5,9 +5,9 @@
 supported(mystery(dark_tapestry)).
 
 class_skill(Skill) :-
-    class_feature(_, mystery),
-    mystery(dark_tapestry),
-    member(Skill, [disguise, intimidate, knowledge(arcana), stealth]).
+  class_feature(_, mystery),
+  mystery(dark_tapestry),
+  member(Skill, [disguise, intimidate, knowledge(arcana), stealth]).
 
 known_spell(Spell, mystery(dark_tapestry), SpellLevel) :-
   class_feature(_, mystery),

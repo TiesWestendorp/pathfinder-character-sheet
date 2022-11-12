@@ -1,5 +1,7 @@
+:- multifile spell_school/2.
 :- multifile spell_source/3.
 
+spell_school(planar_binding, conjuration(calling)).
 spell_source(planar_binding, Source, Level) :- member(Source-Level, [
   class(sorcerer)-6,
   class(wizard)-6,

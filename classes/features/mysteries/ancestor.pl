@@ -5,9 +5,9 @@
 supported(mystery(ancestor)).
 
 class_skill(Skill) :-
-    class_feature(_, mystery),
-    mystery(ancestor),
-    member(Skill, [linguistics, knowledge(_)]).
+  class_feature(_, mystery),
+  mystery(ancestor),
+  member(Skill, [linguistics, knowledge(_)]).
 
 known_spell(Spell, mystery(ancestor), SpellLevel) :-
   class_feature(_, mystery),

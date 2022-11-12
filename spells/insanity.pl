@@ -1,6 +1,10 @@
+:- multifile spell_school/2.
 :- multifile spell_source/3.
+:- multifile spell_descriptor/2.
 
-spell_source(planar_binding, Source, Level) :- member(Source-Level, [
+spell_school(insanity, enchantment(compulsion)).
+spell_descriptor(insanity, mind-affecting).
+spell_source(insanity, Source, Level) :- member(Source-Level, [
   class(sorcerer)-7,
   class(wizard)-7,
   class(witch)-7,

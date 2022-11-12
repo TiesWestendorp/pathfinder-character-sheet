@@ -1,5 +1,7 @@
+:- multifile spell_school/2.
 :- multifile spell_source/3.
 
+spell_school(reverse_gravity, transmutation).
 spell_source(reverse_gravity, Source, Level) :- member(Source-Level, [
   class(druid)-8,
   class(sorcerer)-7,

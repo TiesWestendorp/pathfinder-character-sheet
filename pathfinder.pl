@@ -6,6 +6,7 @@
 :- [feats/feats].
 :- [spells/spells].
 :- [sheet/sheet].
+:- [traits/traits].
 
 :- discontiguous level/1.
 :- discontiguous favored_class_bonus/1.
@@ -14,6 +15,7 @@
 :- multifile known_spell/3.
 
 % Base
+name("The Mad Prophet").
 race(human).
 bonus(ability(cha), racial, 2).
 favored_class(oracle).
@@ -24,6 +26,9 @@ ability_score(con, 11).
 ability_score(int, 12).
 ability_score(wis, 11).
 ability_score(cha, 15).
+trait(reactionary).
+trait(hard_to_kill).
+% TODO: languages
 
 % Level 1
 level(oracle).

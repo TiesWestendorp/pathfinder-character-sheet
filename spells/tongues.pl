@@ -1,5 +1,7 @@
+:- multifile spell_school/2.
 :- multifile spell_source/3.
 
+spell_school(tongues, divination).
 spell_source(tongues, Source, Level) :- member(Source-Level, [
   class(alchemist)-3,
   class(bard)-2,
