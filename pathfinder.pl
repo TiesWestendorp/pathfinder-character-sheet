@@ -106,13 +106,6 @@ feat(greater_spell_focus(necromancy)).
 feat(improved_initiative).
 feat(spell_specialization(blindness/deafness)).
 
-%to_hit_ability(Ability) :- feat(weapon_finesse), !, Ability = dex; Ability = str.
-
-saves(Fort, Ref, Will) :-
-  Fort is 0,
-  Ref is 0,
-  Will is 0.
-
 spell(Spell, Text) :-
   known_spell(Spell, _, SpellLevel),
   spell(Spell, SpellLevel, Text).

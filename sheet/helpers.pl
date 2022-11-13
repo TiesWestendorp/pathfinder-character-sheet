@@ -12,10 +12,15 @@ append_bonus_strings([String1, String2 | Strings], String) :-
 
 typed_bonus_string(Type-Bonus, String) :-
   term_string(Type, TypeString),
-  ( Bonus >= 0,
-    number_string(Bonus, NumberString),
-    string_concat("+", NumberString, BonusString);
-    Bonus < 0,
-    number_string(Bonus, BonusString)),
+  number_signed_string(Bonus, BonusString),
   string_concat(TypeString, " ", TempString),
   string_concat(TempString, BonusString, String).
+
+% Helpers
+number_signed_string(Number, String) :-
+  Number >= 0,
+  number_string(Number, NumberString),
+  string_concat("+", NumberString, String).
+number_signed_string(Number, String) :-
+  Number < 0,
+  number_string(Number, String).

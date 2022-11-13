@@ -46,3 +46,21 @@ dd.bonuses::before {
 dd.bonuses::after {
   content: ')';
 }
+
+#skills {
+  font-size: 10px;
+}
+#skills dt {
+  margin: 0;
+  text-align: right;
+  text-transform: uppercase;
+  width: 150px;
+}
+#skills dd {
+  margin: 0;
+  text-align: center;
+  width: 32px;
+}
+#skills dd.bonuses {
+  width: auto;
+}

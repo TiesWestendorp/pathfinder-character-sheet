@@ -24,8 +24,8 @@ character_sheet(
     h1(Name)
   ],
   general_sheet(General),
-  defense_sheet(Defense),
-  offense_sheet(Offense),
+  phrase(defense, Defense),
+  phrase(offense, Offense),
   statistics_sheet(Statistics),
   special_abilities_sheet(SpecialAbilities),
   append(Header, General, Temp0),

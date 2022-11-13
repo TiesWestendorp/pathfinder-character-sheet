@@ -6,6 +6,7 @@
 :- [combat_maneuver_defense].
 :- [favored_class_bonus].
 :- [initiative].
+:- [saving_throws].
 :- [size].
 :- [skills].
 

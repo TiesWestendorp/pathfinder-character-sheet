@@ -33,7 +33,8 @@ base(skill(acrobatics), 0).
 base(skill(appraise), 0).
 base(skill(bluff), 0).
 base(skill(climb), 0).
-%base(skill(craft(_)), 0). % TODO: fix
+base(skill(craft(any)), 0).
+base(skill(craft(_)), 0).
 base(skill(diplomacy), 0).
 base(skill(disable_device), 0) :- trained(disable_device).
 base(skill(disguise), 0).
