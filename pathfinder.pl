@@ -12,10 +12,13 @@
 :- discontiguous favored_class_bonus/1.
 :- discontiguous equipment/1.
 :- discontiguous feat/1.
+:- discontiguous skill_rank/1.
 :- multifile known_spell/3.
 
 % Base
 name("The Mad Prophet").
+portrait("the mad prophet.png").
+gender(male).
 race(human).
 bonus(ability(cha), racial, 2).
 favored_class(oracle).
@@ -28,35 +31,68 @@ ability_score(wis, 11).
 ability_score(cha, 15).
 trait(reactionary).
 trait(hard_to_kill).
-% TODO: languages
 
 % Level 1
 level(oracle).
 mystery(dark_tapestry).
-favored_class_bonus(hitpoint).
-bonus(combat_maneuver_bonus(trip), racial, 10).
-skill_rank(profession).
-bonus(skill(craft(potion)), feat, 3).
+favored_class_bonus(racial).
+skill_rank(climb).
+skill_rank(knowledge(arcana)).
+skill_rank(knowledge(planes)).
+skill_rank(knowledge(religion)).
+skill_rank(perception).
+skill_rank(stealth).
 
 % Level 2
 level(oracle).
 favored_class_bonus(racial).
+skill_rank(climb).
+skill_rank(knowledge(arcana)).
+skill_rank(knowledge(planes)).
+skill_rank(knowledge(religion)).
+skill_rank(perception).
+skill_rank(stealth).
 
 % Level 3
 level(oracle).
-favored_class_bonus(skill_rank).
+favored_class_bonus(racial).
+skill_rank(climb).
+skill_rank(knowledge(arcana)).
+skill_rank(knowledge(planes)).
+skill_rank(knowledge(religion)).
+skill_rank(perception).
+skill_rank(stealth).
 
 % Level 4
 level(oracle).
-favored_class_bonus(hitpoint).
+favored_class_bonus(racial).
+bonus(ability(dex), level4, 1).
+skill_rank(diplomacy).
+skill_rank(knowledge(arcana)).
+skill_rank(knowledge(planes)).
+skill_rank(knowledge(religion)).
+skill_rank(perception).
+skill_rank(stealth).
 
 % Level 5
 level(oracle).
-favored_class_bonus(hitpoint).
+favored_class_bonus(racial).
+skill_rank(intimidate).
+skill_rank(knowledge(arcana)).
+skill_rank(knowledge(planes)).
+skill_rank(knowledge(religion)).
+skill_rank(perception).
+skill_rank(stealth).
 
 % Level 6
 level(oracle).
-favored_class_bonus(hitpoint).
+favored_class_bonus(racial).
+skill_rank(knowledge(arcana)).
+skill_rank(knowledge(history)).
+skill_rank(knowledge(planes)).
+skill_rank(knowledge(religion)).
+skill_rank(perception).
+skill_rank(stealth).
 
 equipment(headband_of_alluring_charisma(2)).
 equipment(breastplate).
@@ -82,3 +118,13 @@ spell(Spell, Text) :-
   spell(Spell, SpellLevel, Text).
 
 :- [validations/validations].
+
+main :-
+    character_sheet(X),
+    phrase(X, Y),
+    (   current_prolog_flag(argv, [File|_])
+    ->  setup_call_cleanup(open(File, write, Out),
+            print_html(Out, Y),
+            close(Out))
+    ;   print_html(Y)
+    ).

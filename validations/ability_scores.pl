@@ -13,8 +13,6 @@
       length(Scores, Amount),
     
       % TODO: generate proper error
-      print(Ability),
-      print(Scores),
       (
         Amount > 1, throw("Multiple scores specified for ability");
         false

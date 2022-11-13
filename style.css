@@ -1,0 +1,48 @@
+body {
+  font-family: 'Varela', sans-serif !important;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(207,226,243);
+  margin: 0 0 10px;
+  padding: 3px;
+}
+
+#portrait {
+  aspect-ratio: 1/1;
+  float: right;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+section {
+  clear: both;
+}
+
+section h3 {
+  font-size: 12px;
+  border-top: solid thin;
+  border-bottom: solid thin;
+  text-transform: uppercase;
+}
+
+section dl {
+  display: inline-block;
+}
+
+section dl div {
+  display: flex;
+}
+
+section dl div dt {
+  font-weight: 700;
+}
+
+dd.bonuses::before {
+  content: '(';
+}
+dd.bonuses::after {
+  content: ')';
+}

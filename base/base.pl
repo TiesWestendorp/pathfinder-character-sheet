@@ -10,7 +10,7 @@
 :- [skills].
 
 % TODO: allow stacking bonuses
-stacking_bonuses([circumstance, dodge, favored_class_bonus, untyped]).
+stacking_bonuses([circumstance, dodge, untyped]).
 
 filter_typed_bonuses([], _{}).
 filter_typed_bonuses([Type-Bonus | Rest], Filtered) :-

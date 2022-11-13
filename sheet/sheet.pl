@@ -1,24 +1,35 @@
 :- initialization(main, main).
 :- use_module(library(http/html_write)).
 
+:- [helpers].
+:- [general].
+:- [defense].
+:- [offense].
+:- [statistics].
+:- [special_abilities].
+
 character_sheet(
     page(
         % Head
-        [title('Character Sheet')],
-        % Body
         [
-            h1('Character sheet'),
-            p('Bla')
-        ]
+          title(Name),
+          link([rel("stylesheet"), href("style.css")])
+        ],
+        % Body
+        Body
     )
-).
-
-main :-
-    character_sheet(X),
-    phrase(X, Y),
-    (   current_prolog_flag(argv, [File|_])
-    ->  setup_call_cleanup(open(File, write, Out),
-            print_html(Out, Y),
-            close(Out))
-    ;   print_html(Y)
-    ).
+) :- 
+  name(Name),
+  Header = [
+    h1(Name)
+  ],
+  general_sheet(General),
+  defense_sheet(Defense),
+  offense_sheet(Offense),
+  statistics_sheet(Statistics),
+  special_abilities_sheet(SpecialAbilities),
+  append(Header, General, Temp0),
+  append(Temp0, Defense, Temp1),
+  append(Temp1, Offense, Temp2),
+  append(Temp2, Statistics, Temp3),
+  append(Temp3, SpecialAbilities, Body).

@@ -3,6 +3,9 @@
 :- multifile bonus/3.
 :- multifile casting_ability/2.
 :- multifile class_feature/2.
+:- multifile skill_ranks_progression/2.
+:- multifile base_attack_bonus_progression/2.
+:- multifile saving_throw_progression/2.
 
 supported(level(oracle)).
 
@@ -18,12 +21,9 @@ class_skill(Skill) :- class(oracle), member(Skill, [
   spellcraft
 ]).
 
-bonus(skill_ranks, oracle, SkillRanks) :-
-  level(oracle, Level),
-  ability_modifier(int, IntModifier),
-  SkillRanks is Level * max(IntModifier + 4, 0).
-
-bonus(base_attack_bonus, oracle, Bab) :- level(oracle, Level), Bab is floor(Level*3/4).
+skill_ranks_progression(oracle, 4).
+base_attack_bonus_progression(oracle, 3/4).
+saving_throw_progression(oracle, [fortitude-low, reflex-low, will-high]).
 
 casting_ability(oracle, cha).
 

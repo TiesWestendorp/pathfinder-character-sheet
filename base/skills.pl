@@ -8,6 +8,7 @@ skills([acrobatics, appraise, bluff, climb, craft(_), diplomacy, disable_device,
 handle_animal, heal, intimidate, knowledge(_), linguistics, perception, perform, profession, ride, sense_motive,
 sleight_of_hand, spellcraft, stealth, survival, swim, use_magic_device]).
 
+base(skill_ranks, 0).
 base(skill_rank(Skill), 0) :- skills(Skills), member(Skill, Skills).
 
 % Skill ranks
@@ -32,7 +33,7 @@ base(skill(acrobatics), 0).
 base(skill(appraise), 0).
 base(skill(bluff), 0).
 base(skill(climb), 0).
-base(skill(craft(_)), 0).
+%base(skill(craft(_)), 0). % TODO: fix
 base(skill(diplomacy), 0).
 base(skill(disable_device), 0) :- trained(disable_device).
 base(skill(disguise), 0).

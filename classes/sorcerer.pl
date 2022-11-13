@@ -2,6 +2,9 @@
 :- multifile class_skill/1.
 :- multifile bonus/3.
 :- multifile casting_ability/2.
+:- multifile skill_ranks_progression/2.
+:- multifile base_attack_bonus_progression/2.
+:- multifile saving_throw_progression/2.
 
 supported(level(sorcerer)).
 
@@ -17,12 +20,9 @@ class_skill(Skill) :- class(sorcerer), member(Skill, [
   use_magic_device
 ]).
 
-bonus(skill_ranks, oracle, SkillRanks) :-
-  level(oracle, Level),
-  ability_modifier(int, IntModifier),
-  SkillRanks is Level * max(IntModifier + 2, 0).
-
-bonus(base_attack_bonus, sorcerer, Bab) :- level(sorcerer, Level), Bab is floor(Level*1/2).
+skill_ranks_progression(sorcerer, 2).
+base_attack_bonus_progression(sorcerer, 1/2).
+saving_throw_progression(sorcerer, [fortitude-low, reflex-low, will-high]).
 
 casting_ability(sorcerer, cha).
 
