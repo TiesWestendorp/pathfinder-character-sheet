@@ -35,7 +35,7 @@ trait(hard_to_kill).
 % Level 1
 level(oracle).
 mystery(dark_tapestry).
-favored_class_bonus(racial).
+favored_class_bonus(hitpoint).
 skill_rank(climb).
 skill_rank(knowledge(arcana)).
 skill_rank(knowledge(planes)).
@@ -45,7 +45,7 @@ skill_rank(stealth).
 
 % Level 2
 level(oracle).
-favored_class_bonus(racial).
+favored_class_bonus(hitpoint).
 skill_rank(climb).
 skill_rank(knowledge(arcana)).
 skill_rank(knowledge(planes)).
@@ -56,7 +56,7 @@ skill_rank(stealth).
 % Level 3
 level(oracle).
 favored_class_bonus(racial).
-skill_rank(climb).
+skill_rank(linguistics).
 skill_rank(knowledge(arcana)).
 skill_rank(knowledge(planes)).
 skill_rank(knowledge(religion)).

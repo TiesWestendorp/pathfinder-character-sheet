@@ -1,3 +1,4 @@
+:- use_module(library(func)).
 :- [oracle].
 :- [sorcerer].
 
@@ -7,18 +8,9 @@ class(Class) :- classes(Classes), member(Class, Classes).
 level(Class, TotalLevel) :- bagof(_, level(Class), ClassLevels), length(ClassLevels, TotalLevel).
 total_level(TotalLevel) :- bagof(Level, Class^level(Class, Level), Levels), sumlist(Levels, TotalLevel).
 
-% Skill ranks progression
-bonus(skill_ranks, Class, Bonus) :-
-  level(Class, Level),
-  skill_ranks_progression(Class, Progression),
-  ability_modifier(int, IntModifier),
-  Bonus is Level * max(IntModifier + Progression, 0).
-
-% Base attack bonus progression
-bonus(base_attack_bonus, Class, Bonus) :-
-  level(Class, Level),
-  base_attack_bonus_progression(Class, Progression),
-  Bonus is floor(Level*Progression).
+% Sum progressions to BAB and skill ranks
+bonus(skill_ranks, Class, Bonus)       :- Bonus is (level $ Class) * max((ability_modifier $ int) + (skill_ranks_progression $ Class), 0).
+bonus(base_attack_bonus, Class, Bonus) :- Bonus is floor((level $ Class)*(base_attack_bonus_progression $ Class)).
 
 % Saving throw progression
 base(saving_throw(SavingThrow), 0) :- member(SavingThrow, [fortitude, reflex, will]).

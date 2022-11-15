@@ -1,5 +1,8 @@
 body {
   font-family: 'Varela', sans-serif !important;
+  outline: 1px solid black;
+  padding: 10px;
+  width: 700px;
 }
 
 h1 {
@@ -7,13 +10,19 @@ h1 {
   font-weight: bold;
   background-color: rgb(207,226,243);
   margin: 0 0 10px;
+  outline: 1px solid black;
   padding: 3px;
+}
+
+dl {
+  margin: 0;
 }
 
 #portrait {
   aspect-ratio: 1/1;
   float: right;
   margin-bottom: 10px;
+  outline: 1px solid black;
   width: 100px;
 }
 
@@ -22,9 +31,14 @@ section {
 }
 
 section h3 {
+  background: #E1E1E1;
   font-size: 12px;
   border-top: solid thin;
   border-bottom: solid thin;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-transform: uppercase;
 }
 
@@ -42,6 +56,9 @@ section dl div dt {
 
 dd.bonuses::before {
   content: '(';
+}
+dd.bonuses {
+  font-size: 75%;
 }
 dd.bonuses::after {
   content: ')';

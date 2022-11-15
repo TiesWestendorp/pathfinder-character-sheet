@@ -4,18 +4,15 @@ statistics_sheet(X) :-
   X = [
     section(id('statistics'), [
       h3('Statistics'),
-      dl([
+      dl(
         div([
           dt('Bab'),
           dd(Bab)
-        ]),
-        div([
-          dt('Skills'),
-          dl(id('skills'),
-            Skills
-          )
         ])
-      ])
+      ),
+      dl(id('skills'),
+        Skills
+      )
     ])
   ].
 
@@ -23,20 +20,4 @@ statistics_sheet(X) :-
 dcg_skills --> { bagof(Skill, (Score^(total_score(skill(Skill), Score), ground(Skill))), Skills) }, dcg_skills(Skills).
 
 dcg_skills([]) --> [].
-dcg_skills([Skill | Skills]) --> dcg_skill(Skill), dcg_skills(Skills).
-
-dcg_skill(Skill) --> {
-    total_score(skill(Skill), Score),
-    term_string(Skill, SkillString),
-    typed_bonuses_string(skill(Skill), Bonuses),
-    number_signed_string(Score, ScoreString)
-  }, [
-    div(
-      id(SkillString),
-      [
-        dt(SkillString),
-        dd(ScoreString),
-        dd(class('bonuses'), Bonuses)
-      ]
-    )
-  ].
+dcg_skills([Skill | Skills]) --> dcg_entity(skill(Skill), signed), dcg_skills(Skills).

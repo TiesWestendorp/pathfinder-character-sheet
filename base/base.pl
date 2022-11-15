@@ -10,6 +10,8 @@
 :- [size].
 :- [skills].
 
+predicate_count(Predicate, Count) :- Count = length $ bagof(_) $ Predicate.
+
 % TODO: allow stacking bonuses
 stacking_bonuses([circumstance, dodge, untyped]).
 
@@ -47,3 +49,5 @@ combat_maneuvers([
   sunder,
   trip
 ]).
+
+base(hitpoints, 0).

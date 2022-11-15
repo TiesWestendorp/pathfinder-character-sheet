@@ -1,17 +1,21 @@
 general_sheet(X) :-
-  gender(Gender),
-  race(Race),
+%  gender(Gender),
+%  race(Race),
   portrait(Portrait),
-  total_score(initiative, Initiative),
-  typed_bonuses_string(initiative, InitiativeBonuses),
-  total_score(skill(perception), Perception),
+  phrase(general, General),
   X = [
     section(id('general'), [
-      dl([
-        span([Gender, Race]),
-        div([dt("Initiative"), dd(Initiative), dd(class("bonuses"), InitiativeBonuses)]),
-        div([dt("Senses"), dd(0), dt("Perception"), dd(Perception)])
-      ]),
+      dl(General),
       img([id("portrait"), src(Portrait)])
     ])
   ].
+
+%[
+%        span([Gender, Race]),
+%        Initiative,
+%        div([dt("Senses"), dd(0), dt("Perception"), dd(Perception)])
+%      ]
+
+general -->
+  dcg_entity(initiative, signed),
+  dcg_entity(skill(perception), signed).

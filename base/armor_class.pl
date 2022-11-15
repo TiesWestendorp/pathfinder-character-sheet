@@ -1,3 +1,4 @@
+:- use_module(library(func)).
 :- multifile base/2.
 :- multifile bonus/3.
 
@@ -11,7 +12,6 @@ base(armor_class(Type), ArmorClass) :-
   armor_class(Type).
 
 % Non-flatfooted
-bonus(armor_class(Type), dex, DexModifier) :-
+bonus(armor_class(Type), dex, ability_modifier $ dex) :-
   % TODO: consider max dex bonus
-  ability_modifier(dex, DexModifier),
   member(Type, [base, touch]).

@@ -1,3 +1,4 @@
+:- use_module(library(func)).
 :- multifile supported/1.
 :- multifile base/2.
 :- multifile bonus/3.
@@ -9,26 +10,23 @@ handle_animal, heal, intimidate, knowledge(_), linguistics, perception, perform,
 sleight_of_hand, spellcraft, stealth, survival, swim, use_magic_device]).
 
 base(skill_ranks, 0).
-base(skill_rank(Skill), 0) :- skills(Skills), member(Skill, Skills).
+base(skill_rank(_), 0).
 
-% Skill ranks
-bonus(skill_rank(Skill), ranks, 1) :- skill_rank(Skill).
-bonus(skill(Skill), ranks, Ranks) :- total_score(skill_rank(Skill), Ranks).
-
-% Class skills
+% Skill ranks and class bonus
+bonus(skill(Skill), ranks, Ranks) :- Ranks = predicate_count $ skill_rank(Skill).
 bonus(skill(Skill), class, 3) :- class_skill(Skill), trained(Skill).
+trained(Skill) :- bonus(skill(Skill)) $ ranks > 0.
 
 % Ability modifiers
 % TODO: max dex bonus
 % TODO: ACP
-bonus(skill(Skill), str, Modifier) :- ability_modifier(str, Modifier), member(Skill, [climb, swim]).
-bonus(skill(Skill), dex, Modifier) :- ability_modifier(dex, Modifier), member(Skill, [acrobatics, disable_device, escape_artist, fly, ride, sleight_of_hand, stealth]).
-bonus(skill(Skill), int, Modifier) :- ability_modifier(int, Modifier), member(Skill, [appraise, craft(_), knowledge(_), linguistics, spellcraft]).
-bonus(skill(Skill), wis, Modifier) :- ability_modifier(wis, Modifier), member(Skill, [heal, perception, profession, sense_motive, survival]).
-bonus(skill(Skill), cha, Modifier) :- ability_modifier(cha, Modifier), member(Skill, [bluff, diplomacy, disguise, handle_animal, intimidate, perform, use_magic_device]).
+bonus(skill(Skill), str, ability_modifier $ str) :- member(Skill, [climb, swim]).
+bonus(skill(Skill), dex, ability_modifier $ dex) :- member(Skill, [acrobatics, disable_device, escape_artist, fly, ride, sleight_of_hand, stealth]).
+bonus(skill(Skill), int, ability_modifier $ int) :- member(Skill, [appraise, craft(_), knowledge(_), linguistics, spellcraft]).
+bonus(skill(Skill), wis, ability_modifier $ wis) :- member(Skill, [heal, perception, profession, sense_motive, survival]).
+bonus(skill(Skill), cha, ability_modifier $ cha) :- member(Skill, [bluff, diplomacy, disguise, handle_animal, intimidate, perform, use_magic_device]).
 
 % Trainedness
-trained(Skill) :- total_score(skill_rank(Skill), Ranks), Ranks > 0.
 base(skill(acrobatics), 0).
 base(skill(appraise), 0).
 base(skill(bluff), 0).
