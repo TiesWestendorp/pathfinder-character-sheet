@@ -1,7 +1,7 @@
 :- use_module(library(func)).
 
 % Entity tags
-dcg_entity(Entity, Signed) --> {
+dcg_entity(Entity, Signed, ShowTitle) --> {
     (
       Signed = signed,   ScoreString = number_signed_string $ total_score $ Entity;
       Signed = unsigned, ScoreString = number_string $ total_score $ Entity
@@ -10,13 +10,16 @@ dcg_entity(Entity, Signed) --> {
       Bonuses = typed_bonuses_string $ Entity;
       \+ bonus(Entity, _, _), Bonuses = "none"
     ),
+    Id = term_string $ Entity,
     Title = term_formatted $ Entity,
-    Tooltip = string_concat(string_concat(Title) $ " bonuses: ") $ Bonuses
+    Tooltip = string_concat(string_concat(Title) $ " bonuses: ") $ Bonuses,
+    (
+      ShowTitle = title,    Tag = div([id(Id), title(Tooltip)],[dt(Title), dd(ScoreString)]);
+      ShowTitle = no_title, Tag = div([id(Id), title(Tooltip)],[dd(ScoreString)])
+    )
   },
-  [
-    div([id(Title), title(Tooltip)], [dt(Title), dd(ScoreString)])
-  ].
-dcg_entity(Entity, _) --> { \+ total_score(Entity, _) }.
+  [ Tag ].
+dcg_entity(Entity, _, _) --> { \+ total_score(Entity, _) }.
 
 % Helpers
 typed_bonuses_string(Entity, String) :- 

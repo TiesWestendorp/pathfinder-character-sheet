@@ -17,5 +17,5 @@ general_sheet(X) :-
 %      ]
 
 general -->
-  dcg_entity(initiative, signed),
-  dcg_entity(skill(perception), signed).
+  dcg_entity(initiative, signed, title),
+  dcg_entity(skill(perception), signed, title).

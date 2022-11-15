@@ -65,6 +65,7 @@ dd.bonuses::after {
 }
 
 #skills {
+  float: right;
   font-size: 10px;
 }
 #skills dt {

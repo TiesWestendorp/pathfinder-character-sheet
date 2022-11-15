@@ -1,3 +1,6 @@
+% Armor and shields
+:- ["armor and shields/agile breastplate"].
+
 % Rings
 :- ["magic items/rings/ring of climbing"].
 :- ["magic items/rings/ring of protection"].

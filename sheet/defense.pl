@@ -18,9 +18,9 @@ defense --> {
 % Armor classes
 dcg_armor_classes --> dcg_armor_classes([base, flatfooted, touch]).
 dcg_armor_classes([]) --> [].
-dcg_armor_classes([ ArmorClass | ArmorClasses ]) --> dcg_entity(armor_class(ArmorClass), unsigned), dcg_armor_classes(ArmorClasses).
+dcg_armor_classes([ ArmorClass | ArmorClasses ]) --> dcg_entity(armor_class(ArmorClass), unsigned, title), dcg_armor_classes(ArmorClasses).
 
 % Saving throws
 dcg_saving_throws --> dcg_saving_throws([fortitude, reflex, will]).
 dcg_saving_throws([]) --> [].
-dcg_saving_throws([ SavingThrow | SavingThrows ]) --> dcg_entity(saving_throw(SavingThrow), signed), dcg_saving_throws(SavingThrows).
+dcg_saving_throws([ SavingThrow | SavingThrows ]) --> dcg_entity(saving_throw(SavingThrow), signed, title), dcg_saving_throws(SavingThrows).

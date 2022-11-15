@@ -55,7 +55,7 @@ skill_rank(stealth).
 
 % Level 3
 level(oracle).
-favored_class_bonus(racial).
+favored_class_bonus(hitpoint).
 skill_rank(linguistics).
 skill_rank(knowledge(arcana)).
 skill_rank(knowledge(planes)).
@@ -95,7 +95,9 @@ skill_rank(perception).
 skill_rank(stealth).
 
 equipment(headband_of_alluring_charisma(2)).
-equipment(breastplate).
+inventory(headband_of_alluring_charisma(2)).
+inventory(headband_of_alluring_charisma(2)).
+equipment(agile_breastplate).
 equipment(dagger).
 
 known_spell(blindness/deafness, class(oracle), 2).

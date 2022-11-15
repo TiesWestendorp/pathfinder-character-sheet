@@ -11,6 +11,7 @@
 :- [skills].
 
 predicate_count(Predicate, Count) :- Count = length $ bagof(_) $ Predicate.
+predicate_sum(Functor, Sum) :- Sum = sumlist $ bagof(Term) $ (Predicate=..[Functor, Term], Predicate).
 
 % TODO: allow stacking bonuses
 stacking_bonuses([circumstance, dodge, untyped]).
@@ -27,15 +28,9 @@ typed_bonuses(Entity, TypedBonuses) :-
   bagof(Type-Bonus, FilteredBonusesDict.get(Type) = Bonus, TypedBonuses);
   \+ bonus(Entity, _, _), TypedBonuses = [].
 
-bonuses(Entity, Bonuses) :-
-  typed_bonuses(Entity, TypedBonuses),
-  pairs_keys_values(TypedBonuses, _, Bonuses).
+bonuses(Entity, Bonuses) :- Bonuses = pairs_keys_values(typed_bonuses $ Entity) $ _.
 
-total_score(Entity, Score) :-
-  base(Entity, Base),
-  bonuses(Entity, Bonuses),
-  sumlist(Bonuses, SummedBonuses),
-  Score is Base + SummedBonuses.
+total_score(Entity, Score) :- Score is (base $ Entity) + (sumlist $ bonuses $ Entity).
 
 combat_maneuvers([
   bull_rush,
