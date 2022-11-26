@@ -1,3 +1,4 @@
+:- use_module(library(func)).
 :- multifile bonus/3.
 
 size_class(Size, Class) :-
@@ -19,7 +20,7 @@ size_modifier(Size, Modifier) :-
     Class > 0, Modifier is -(2^(Class-1))).
 size_modifier(Modifier) :- size(Size), size_modifier(Size, Modifier).
 
-special_size_modifier(Size, Modifier) :- size_modifier(Size, SizeModifier), Modifier is -SizeModifier.
+special_size_modifier(Size, Modifier) :- Modifier is -(size_modifier $ Size).
 special_size_modifier(Modifier) :- size(Size), special_size_modifier(Size, Modifier).
 
 % Size bonuses

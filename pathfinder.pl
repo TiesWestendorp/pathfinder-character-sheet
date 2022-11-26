@@ -1,13 +1,3 @@
-:- [base/base].
-:- [races/races].
-:- [classes/classes].
-:- ["classes/features/mysteries/dark tapestry"].
-:- [items/items].
-:- [feats/feats].
-:- [spells/spells].
-:- [sheet/sheet].
-:- [traits/traits].
-
 :- discontiguous level/1.
 :- discontiguous favored_class_bonus/1.
 :- discontiguous equipment/1.
@@ -19,8 +9,7 @@
 name("The Mad Prophet").
 portrait("the mad prophet.png").
 gender(male).
-race(human).
-bonus(ability(cha), racial, 2).
+race(human, [ability_score_modifiers(cha), bonus_feat, speed(20)]).
 favored_class(oracle).
 ability_score_method(roll).
 ability_score(str, 7).
@@ -112,14 +101,39 @@ spell(Spell, Text) :-
   known_spell(Spell, _, SpellLevel),
   spell(Spell, SpellLevel, Text).
 
+:- [base/base].
+:- [races/races].
+:- [classes/classes].
+:- ["classes/features/mysteries/dark tapestry"].
+:- [items/items].
+:- [feats/feats].
+:- [spells/spells].
+:- [sheet/sheet].
+:- [traits/traits].
 :- [validations/validations].
 
+:- use_module(library(st/st_render)).
+
 main :-
-    character_sheet(X),
-    phrase(X, Y),
+    bagof(_{ name: Name, score: Score, bonuses: Bonuses }, Ability^(total_score(ability(Ability), Score), typed_bonuses_string(ability(Ability), Bonuses), term_string(Ability, Name)), Abilities),
+    bagof(_{ name: Name, score: Score, bonuses: Bonuses }, Skill^(total_score(skill(Skill), Score), typed_bonuses_string(skill(Skill), Bonuses), ground(Skill), term_string(Skill, Name)), Skills),
+    bagof(_{ name: Name }, feat(Name), Feats),
+    name(Name),
+    portrait(Portrait),
+    race(Race, _),
+    Data =  _{
+      name: Name,
+      portrait: Portrait,
+      race: Race,
+      abilities: Abilities,
+      skills: Skills,
+      feats: Feats,
+    },
+    Options = [],
     (   current_prolog_flag(argv, [File|_])
-    ->  setup_call_cleanup(open(File, write, Out),
-            print_html(Out, Y),
+    ->  setup_call_cleanup(
+            open(File, write, Out),
+            st_render_file(sheet/template, Data, Out, Options),
             close(Out))
-    ;   print_html(Y)
+    %;   print_html(Y)
     ).

@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>{{= name }}</title>
+        <link rel="stylesheet" href="style.css" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+      <h1>{{= name }}</h1>
+
+      <section>
+        <img id="portrait" src="the mad prophet.png" />
+        <dl>
+            <div>
+                <dt>Initiative</dt><dd>TODO</dd>
+                <dt>Senses</dt><dd>TODO</dd>
+            </div>
+        </dl>
+      </section>
+      <section>
+        <h3>Defense</h3>
+        <dl>
+            <div>
+                <dt>AC</dt><dd></dd>
+                <dt>Touch</dt><dd></dd>
+                <dt>Flat-footed</dt><dd></dd>
+            </div>
+            <div>
+                <dt>HP</dt>
+                <dd></dd>
+            </div>
+            <div>
+                <dt>Fortitude</dt><dd>TODO</dd>
+                <dt>Reflex</dt><dd>TODO</dd>
+                <dt>Will</dt><dd>TODO</dd>
+            </div>
+        </dl>
+      </section>
+      <section>
+        <h3>Offense</h3>
+        <dl>
+            <div>
+                <dt>Speed</dt>
+                <dd>TODO</dd>
+            </div>
+            <div>
+                <dt>Space</dt>
+                <dd>TODO</dd>
+                <dt>Reach</dt>
+                <dd>TODO</dd>
+            </div>
+        </dl>
+      </section>
+      <section>
+        <h3>Statistics</h3>
+        <dl>
+            <div>
+                {{ each abilities, ability }}
+                <dt>{{= ability.name }}</dt>
+                <dd title="{{= ability.bonuses}}">{{= ability.score }}</dd>
+                {{ end }}
+            </div>
+            <div>
+                <dt>Base Atk</dt><dd>TODO</dd>
+                <dt>CMB</dt><dd>TODO</dd>
+                <dt>CMD</dt><dd>TODO</dd>
+            </div>
+            <div>
+                <dt>Feats</dt>
+                <dd>TODO</dd>
+            </div>
+            <div>
+                {{ each skills, skill }}
+                <dt>{{= skill.name }}</dt>
+                <dd title="{{= skill.bonuses}}">{{= skill.score }}</dd>
+                {{ end }}
+            </div>
+        </dl>
+      </section>
+</body>
+</html>

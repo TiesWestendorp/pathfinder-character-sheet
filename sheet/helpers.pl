@@ -7,8 +7,7 @@ dcg_entity(Entity, Signed, ShowTitle) --> {
       Signed = unsigned, ScoreString = number_string $ total_score $ Entity
     ),
     (
-      Bonuses = typed_bonuses_string $ Entity;
-      \+ bonus(Entity, _, _), Bonuses = "none"
+      Bonuses = typed_bonuses_string $ Entity
     ),
     Id = term_string $ Entity,
     Title = term_formatted $ Entity,
@@ -22,8 +21,8 @@ dcg_entity(Entity, Signed, ShowTitle) --> {
 dcg_entity(Entity, _, _) --> { \+ total_score(Entity, _) }.
 
 % Helpers
-typed_bonuses_string(Entity, String) :- 
-  String = comma_separated_strings $ maplist(typed_bonus_string) $ typed_bonuses $ Entity.
+typed_bonuses_string(Entity, String) :- String = comma_separated_strings $ maplist(typed_bonus_string) $ typed_bonuses $ Entity.
+typed_bonuses_string(Entity, "none") :- \+ bonus(Entity, _, _).
 
 term_formatted(Original, Replaced) :- Replaced = underscore_space $ term_string $ strip_first_functor $ Original.
 

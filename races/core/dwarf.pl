@@ -5,6 +5,9 @@
 
 supported(race(dwarf)).
 
+% TODO: standard racial traits
+race(dwarf, []) :- current_predicate(race/1), race(dwarf).
+
 bonus(ability(con), racial, 2) :- race(dwarf).
 bonus(ability(wis), racial, 2) :- race(dwarf).
 bonus(ability(cha), racial, -2) :- race(dwarf).

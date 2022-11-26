@@ -12,6 +12,6 @@ base(armor_class(Type), ArmorClass) :-
   armor_class(Type).
 
 % Non-flatfooted
-bonus(armor_class(Type), dex, ability_modifier $ dex) :-
-  % TODO: consider max dex bonus
+bonus(armor_class(Type), dex, Bonus) :-
+  Bonus = minlist $ [ability_modifier $ dex, predicate_min $ max_dex_bonus],
   member(Type, [base, touch]).
