@@ -2,6 +2,7 @@
 :- [oracle].
 :- [sorcerer].
 :- ["features/mystery"].
+:- ["features/oracles curse"].
 :- ["features/spellcasting oracle"].
 
 % Predicates to inspect classes/levels

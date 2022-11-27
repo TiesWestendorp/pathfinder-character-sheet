@@ -1,6 +1,6 @@
 :- multifile supported/1.
 :- multifile class_skill/1.
-:- multifile known_spell/3.
+:- multifile known_spell/4.
 
 supported(mystery(ancestor)).
 
@@ -8,7 +8,7 @@ class_skill(Skill) :-
   class_feature(_, mystery(ancestor)),
   member(Skill, [linguistics, knowledge(_)]).
 
-known_spell(Spell, mystery(ancestor), SpellLevel) :-
+known_spell(Spell, class(Class), SpellLevel, mystery(ancestor)) :-
   class_feature(Class, mystery(ancestor)),
   level(Class, ClassLevel),
   member(Spell-RequiredLevel, [

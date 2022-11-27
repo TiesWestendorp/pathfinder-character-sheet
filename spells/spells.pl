@@ -12,6 +12,10 @@
 :- ["entropic shield"].
 :- ["feeblemind"].
 :- ["guidance"].
+:- ["inflict critical wounds"].
+:- ["inflict light wounds"].
+:- ["inflict moderate wounds"].
+:- ["inflict serious wounds"].
 :- ["insanity"].
 :- ["interplanetary teleport"].
 :- ["liberating command"].

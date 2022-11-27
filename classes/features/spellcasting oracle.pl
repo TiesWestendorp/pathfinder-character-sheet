@@ -1,6 +1,6 @@
 :- multifile base/2.
 :- multifile bonus/3.
-:- multifile known_spell/3.
+:- multifile known_spell/4.
 
 % Oracle spells known
 base(spells_known(oracle, SpellLevel), Base) :-
@@ -28,38 +28,16 @@ base(spells_known(oracle, SpellLevel), Base) :-
   ; ClassLevel = 20, member(SpellLevel-Base, [0-9, 1-5, 2-5, 3-4, 4-4, 5-4, 6-3, 7-3, 8-3, 9-3])
   ).
 
-% Difficulty class % TODO: check if spell has DC at all
-base(difficulty_class(oracle, Spell), 10) :- known_spell(Spell, class(oracle), _), spell_saving_throw(Spell, _, _).
-bonus(difficulty_class(oracle, Spell), level, SpellLevel) :- known_spell(Spell, class(oracle), SpellLevel).
+% Difficulty class
+base(difficulty_class(oracle, Spell), 10) :- known_spell(Spell, class(oracle), _, _), spell_saving_throw(Spell, _, _).
+bonus(difficulty_class(oracle, Spell), level, SpellLevel) :- known_spell(Spell, class(oracle), SpellLevel, _).
 bonus(difficulty_class(oracle, _), cha, Modifier) :- ability_modifier(cha, Modifier).
 
 % Cure/Inflict spells
-known_spell(Spell, class(oracle), SpellLevel) :-
-  class_feature(_, spellcasting_oracle(cure)),
-  member(Spell, [
-    cure_light_wounds,
-    cure_moderate_wounds,
-    cure_serious_wounds,
-    cure_critical_wounds,
-    mass_cure_light_wounds,
-    mass_cure_moderate_wounds,
-    mass_cure_serious_wounds,
-    mass_cure_critical_wounds
-  ]),
-  spell_source(Spell, class(oracle), SpellLevel),
-  base(spells_known(oracle, SpellLevel), _).
-
-known_spell(Spell, class(oracle), SpellLevel) :-
-  class_feature(_, spellcasting_oracle(inflict)),
-  member(Spell, [
-    inflict_light_wounds,
-    inflict_moderate_wounds,
-    inflict_serious_wounds,
-    inflict_critical_wounds,
-    mass_inflict_light_wounds,
-    mass_inflict_moderate_wounds,
-    mass_inflict_serious_wounds,
-    mass_inflict_critical_wounds
-  ]),
+known_spell(Spell, class(oracle), SpellLevel, spellcasting_oracle(Type)) :-
+  ( Type = cure,    TypeSpells = [cure_light_wounds, cure_moderate_wounds, cure_serious_wounds, cure_critical_wounds, mass_cure_light_wounds, mass_cure_moderate_wounds, mass_cure_serious_wounds, mass_cure_critical_wounds]
+  ; Type = inflict, TypeSpells = [inflict_light_wounds, inflict_moderate_wounds, inflict_serious_wounds, inflict_critical_wounds, mass_inflict_light_wounds, mass_inflict_moderate_wounds, mass_inflict_serious_wounds, mass_inflict_critical_wounds]),
+  class_feature(_, spellcasting_oracle(Type)),
+  member(Spell, TypeSpells),
   spell_source(Spell, class(oracle), SpellLevel),
   base(spells_known(oracle, SpellLevel), _).

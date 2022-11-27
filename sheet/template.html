@@ -1,80 +1,122 @@
 <html>
     <head>
-        <title>{{= name }}</title>
+        <title>{{= general.name }}</title>
         <link rel="stylesheet" href="style.css" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-      <h1>{{= name }}</h1>
+      <h1>{{= general.name }}</h1>
 
+      <!-- General section -->
       <section>
-        <img id="portrait" src="the mad prophet.png" />
-        <dl>
-            <div>
-                <dt>Initiative</dt><dd>TODO</dd>
-                <dt>Senses</dt><dd>TODO</dd>
-            </div>
-        </dl>
+        <img id="portrait" src="{{= general.portrait }}" />
+
+        <p><em>{{= general.description }}</em></p>
+        Gender {{= general.race }} {{ each general.classlevels, classlevel }}{{= classlevel.class }} {{= classlevel.level }}{{ end }}
+        <br />
+        Alignment Size type (subtype)
+        <br />
+        <span title="{{= general.initiative.bonuses }}">
+            <dt>Init</dt><dd>{{= general.initiative.score }}</dd>;
+        </span>
+        <span title="">
+            <dt>Senses</dt><dd></dd>;
+        </span>
+        <span title="{{= general.perception.bonuses }}">
+            <dt>Perception</dt><dd>{{= general.perception.score }}</dd>
+        </span>
       </section>
+
+      <!-- Defense section -->
       <section>
         <h3>Defense</h3>
-        <dl>
-            <div>
-                <dt>AC</dt><dd></dd>
-                <dt>Touch</dt><dd></dd>
-                <dt>Flat-footed</dt><dd></dd>
-            </div>
-            <div>
-                <dt>HP</dt>
-                <dd></dd>
-            </div>
-            <div>
-                <dt>Fortitude</dt><dd>TODO</dd>
-                <dt>Reflex</dt><dd>TODO</dd>
-                <dt>Will</dt><dd>TODO</dd>
-            </div>
-        </dl>
+
+        {{ each defense.armor_classes, armor_class }}
+        <span title="{{= armor_class.bonuses }}">
+            <dt>{{= armor_class.name }}</dt>
+            <dd>{{= armor_class.score }}</dd>
+        </span>
+        {{ end }}
+        <br />
+        <span>
+            <dt>HP</dt>
+            <dd>TODO</dd>
+        </span>
+        <br />
+        {{ each defense.saving_throws, saving_throw }}
+        <span title="{{= saving_throw.bonuses }}">
+            <dt>{{= saving_throw.name }}</dt>
+            <dd>{{= saving_throw.score }}</dd>
+        </span>
+        {{ end }}
       </section>
+
+      <!-- Offense section -->
       <section>
         <h3>Offense</h3>
-        <dl>
-            <div>
-                <dt>Speed</dt>
-                <dd>TODO</dd>
-            </div>
-            <div>
-                <dt>Space</dt>
-                <dd>TODO</dd>
-                <dt>Reach</dt>
-                <dd>TODO</dd>
-            </div>
-        </dl>
+
+        <span>
+            <dt>Speed</dt>
+            <dd>TODO</dd>
+        </span>
+        <br />
+        <br />
+        <span>
+            <dt>Space</dt>
+            <dd>TODO</dd>
+        </span>
+        <span>
+            <dt>Reach</dt>
+            <dd>TODO</dd>
+        </span>
       </section>
+
+      <!-- Statistics section -->
       <section>
         <h3>Statistics</h3>
-        <dl>
-            <div>
-                {{ each abilities, ability }}
-                <dt>{{= ability.name }}</dt>
-                <dd title="{{= ability.bonuses}}">{{= ability.score }}</dd>
-                {{ end }}
-            </div>
-            <div>
-                <dt>Base Atk</dt><dd>TODO</dd>
-                <dt>CMB</dt><dd>TODO</dd>
-                <dt>CMD</dt><dd>TODO</dd>
-            </div>
-            <div>
-                <dt>Feats</dt>
-                <dd>TODO</dd>
-            </div>
-            <div>
-                {{ each skills, skill }}
-                <dt>{{= skill.name }}</dt>
-                <dd title="{{= skill.bonuses}}">{{= skill.score }}</dd>
-                {{ end }}
-            </div>
-        </dl>
+
+        {{ each statistics.abilities, ability }}
+        <span title="{{= ability.bonuses }}">
+            <dt>{{= ability.name }}</dt>
+            <dd>{{= ability.score }}</dd>
+        </span>
+        {{ end }}
+        <br />
+        <span title="{{= statistics.bab.bonuses }}">
+            <dt>Base atk</dt>
+            <dd>{{= statistics.bab.score }}</dd>
+        </span>
+        <span>
+            <dt>CMB</dt>
+            <dd>TODO</dd>
+        </span>
+        <span>
+            <dt>CMD</dt>
+            <dd>TODO</dd>
+        </span>
+        <br />
+
+        <span>
+            <dt>Skills</dt>
+            <dd></dd>
+        </span>
+        {{ each statistics.skills, skill }}
+        <span title="{{= skill.bonuses }}">
+            <dt>{{= skill.name }}</dt>
+            <dd title="{{= skill.bonuses}}">{{= skill.score }}</dd>
+        </span>
+        {{ end }}
+        <br />
+
+        {{ each statistics.class_spells, class_spells }}
+        <p>
+            <b>class_spells.class.name</b> (CL class_spells.class.level; concentration class_spells.concentration)
+            {{ each class_spells.spells, spell }}
+                <dt>{{= spell.name }}</dt>
+                <dd></dd>
+            {{ end }}
+        </p>
+        {{ end }}
       </section>
-</body>
+    </body>
 </html>

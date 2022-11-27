@@ -14,10 +14,6 @@ h1 {
   padding: 3px;
 }
 
-dl {
-  margin: 0;
-}
-
 #portrait {
   aspect-ratio: 1/1;
   float: right;
@@ -42,6 +38,15 @@ section h3 {
   text-transform: uppercase;
 }
 
+span dt, span dd {
+  display: inline;
+  margin: 0;
+}
+span dt {
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+/*
 section dl {
   display: inline-block;
 }
@@ -82,3 +87,4 @@ dd.bonuses::after {
 #skills dd.bonuses {
   width: auto;
 }
+*/

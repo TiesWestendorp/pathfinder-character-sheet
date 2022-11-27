@@ -1,6 +1,6 @@
 :- multifile supported/1.
 :- multifile class_skill/1.
-:- multifile known_spell/3.
+:- multifile known_spell/4.
 
 supported(mystery(dark_tapestry)).
 
@@ -8,7 +8,7 @@ class_skill(Skill) :-
   class_feature(_, mystery(dark_tapestry)),
   member(Skill, [disguise, intimidate, knowledge(arcana), stealth]).
 
-known_spell(Spell, mystery(dark_tapestry), SpellLevel) :-
+known_spell(Spell, class(Class), SpellLevel, mystery(dark_tapestry)) :-
   class_feature(Class, mystery(dark_tapestry)),
   level(Class, ClassLevel),
   member(Spell-RequiredLevel, [
