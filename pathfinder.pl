@@ -22,8 +22,8 @@ trait(reactionary).
 trait(hard_to_kill).
 
 % Level 1
+class(oracle, [spellcasting_oracle(cure), mystery(dark_tapestry)]).
 level(oracle).
-mystery(dark_tapestry).
 favored_class_bonus(hitpoint).
 skill_rank(climb).
 skill_rank(knowledge(arcana)).
@@ -89,7 +89,7 @@ inventory(headband_of_alluring_charisma(2)).
 equipment(agile_breastplate).
 equipment(dagger).
 
-known_spell(blindness/deafness, class(oracle), 2).
+known_spell(blindness/deafness, class(oracle), 3).
 
 feat(uncanny_dodge).
 feat(spell_focus(necromancy)).
@@ -97,14 +97,9 @@ feat(greater_spell_focus(necromancy)).
 feat(improved_initiative).
 feat(spell_specialization(blindness/deafness)).
 
-spell(Spell, Text) :-
-  known_spell(Spell, _, SpellLevel),
-  spell(Spell, SpellLevel, Text).
-
 :- [base/base].
 :- [races/races].
 :- [classes/classes].
-:- ["classes/features/mysteries/dark tapestry"].
 :- [items/items].
 :- [feats/feats].
 :- [spells/spells].
@@ -127,7 +122,7 @@ main :-
       race: Race,
       abilities: Abilities,
       skills: Skills,
-      feats: Feats,
+      feats: Feats
     },
     Options = [],
     (   current_prolog_flag(argv, [File|_])

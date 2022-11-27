@@ -5,7 +5,7 @@
 
 supported(race(human, _)).
 
-language(common) :- race(human).
+language(common) :- race(human, _).
 
 % Racial traits
 racial_trait(size(medium)) :- race(human, _).

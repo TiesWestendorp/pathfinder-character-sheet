@@ -1,7 +1,9 @@
 :- multifile spell_school/2.
+:- multifile spell_subschool/2.
 :- multifile spell_source/3.
 
-spell_school(black_tentacles, conjuration(creation)).
+spell_school(black_tentacles, conjuration).
+spell_subschool(black_tentacles, creation).
 spell_source(black_tentacles, Source, Level) :- member(Source-Level, [
   class(bloodrager)-4,
   class(magus)-4,

@@ -5,14 +5,12 @@
 supported(mystery(ancestor)).
 
 class_skill(Skill) :-
-  class_feature(_, mystery),
-  mystery(ancestor),
+  class_feature(_, mystery(ancestor)),
   member(Skill, [linguistics, knowledge(_)]).
 
 known_spell(Spell, mystery(ancestor), SpellLevel) :-
-  class_feature(_, mystery),
-  mystery(ancestor),
-  level(oracle, ClassLevel),
+  class_feature(Class, mystery(ancestor)),
+  level(Class, ClassLevel),
   member(Spell-RequiredLevel, [
     unseen_servant-2,
     spiritual_weapon-4,

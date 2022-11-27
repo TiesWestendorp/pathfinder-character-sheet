@@ -12,7 +12,10 @@
    [core/human],
    ["traits/ability score modifiers"],
    ["traits/bonus feat"],
-   ["traits/skilled"].
+   ["traits/halfling luck"],
+   ["traits/keen senses"],
+   ["traits/skilled"],
+   ["traits/sure-footed"].
 
 default_options_list(Default, [], List, [Default | List]).
 default_options_list(_, [Option | _], List, List) :- member(Option, List).

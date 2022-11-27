@@ -1,4 +1,5 @@
 :- multifile spell_school/2.
+:- multifile spell_subschool/2.
 :- multifile spell_descriptor/2.
 :- multifile spell_source/3.
 :- multifile spell_casting_time/2.
@@ -9,7 +10,8 @@
 :- multifile spell_saving_throw/3.
 :- multifile spell_description/2.
 
-spell_school(feeblemind, enchantment(compulsion)).
+spell_school(feeblemind, enchantment).
+spell_subschool(feeblemind, compulsion).
 spell_descriptor(feeblemind, mind-affecting).
 spell_source(feeblemind, Source, Level) :- member(Source-Level, [
   class(sorcerer)-5,

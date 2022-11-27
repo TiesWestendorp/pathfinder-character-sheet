@@ -32,6 +32,8 @@ proficiency(armor(light)) :- class(oracle).
 proficiency(armor(medium)) :- class(oracle).
 proficiency(shield(regular)) :- class(oracle).
 
-class_feature(oracle, mystery) :- class(oracle).
+class_feature(oracle, mystery(Mystery))             :- member(mystery(Mystery), class $ oracle).
+class_feature(oracle, spellcasting_oracle(cure))    :- member(spellcasting_oracle(cure), class $ oracle).
+class_feature(oracle, spellcasting_oracle(inflict)) :- member(spellcasting_oracle(inflict), class $ oracle).
 
 % TODO: complete

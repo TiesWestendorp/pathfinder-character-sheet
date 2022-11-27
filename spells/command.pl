@@ -1,8 +1,10 @@
 :- multifile spell_school/2.
+:- multifile spell_subschool/2.
 :- multifile spell_source/3.
 :- multifile spell_descriptor/2.
 
-spell_school(command, enchantment(compulsion)).
+spell_school(command, enchantment).
+spell_subschool(command, compulsion).
 spell_descriptor(command, language-dependent).
 spell_descriptor(command, mind-affecting).
 spell_source(command, Source, Level) :- member(Source-Level, [

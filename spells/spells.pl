@@ -1,6 +1,10 @@
 :- ["black tentacles"].
+:- ["blindness-deafness"].
 :- ["command"].
+:- ["cure critical wounds"].
 :- ["cure light wounds"].
+:- ["cure moderate wounds"].
+:- ["cure serious wounds"].
 :- ["detect magic"].
 :- ["detect poison"].
 :- ["doom"].

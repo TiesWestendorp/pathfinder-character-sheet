@@ -1,7 +1,9 @@
 :- multifile spell_school/2.
+:- multifile spell_subschool/2.
 :- multifile spell_source/3.
 
-spell_school(interplanetary_teleport, conjuration(teleportation)).
+spell_school(interplanetary_teleport, conjuration).
+spell_subschool(interplanetary_teleport, teleportation).
 spell_source(interplanetary_teleport, Source, Level) :- member(Source-Level, [
   class(cleric)-9,
   class(oracle)-9,

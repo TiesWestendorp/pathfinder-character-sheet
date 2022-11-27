@@ -1,6 +1,8 @@
 :- use_module(library(func)).
 :- [oracle].
 :- [sorcerer].
+:- ["features/mystery"].
+:- ["features/spellcasting oracle"].
 
 % Predicates to inspect classes/levels
 classes(Classes) :- setof(Class, level(Class), Classes).
@@ -18,6 +20,7 @@ bonus(saving_throw(SavingThrow), Class, Bonus) :-
   level(Class, Level),
   saving_throw_progression(Class, SavingThrows),
   member(SavingThrow-Progression, SavingThrows),
-  (  Progression = low,    Bonus is floor(Level/3);
-     Progression = medium, Bonus is ceil(Level/2);
-     Progression = high,   Bonus is ceil((Level+3)/2)).
+  (  Progression = low,    Bonus is floor(Level/3)
+  ;  Progression = medium, Bonus is ceil(Level/2)
+  ;  Progression = high,   Bonus is ceil((Level+3)/2)
+  ).

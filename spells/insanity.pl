@@ -1,4 +1,5 @@
 :- multifile spell_school/2.
+:- multifile spell_subschool/2.
 :- multifile spell_descriptor/2.
 :- multifile spell_source/3.
 :- multifile spell_casting_time/2.
@@ -10,7 +11,8 @@
 :- multifile spell_spell_resistance/2.
 :- multifile spell_description/2.
 
-spell_school(insanity, enchantment(compulsion)).
+spell_school(insanity, enchantment).
+spell_subschool(insanity, compulsion).
 spell_descriptor(insanity, mind-affecting).
 spell_source(insanity, Source, Level) :- member(Source-Level, [
   class(sorcerer)-7,

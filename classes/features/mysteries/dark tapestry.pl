@@ -5,14 +5,12 @@
 supported(mystery(dark_tapestry)).
 
 class_skill(Skill) :-
-  class_feature(_, mystery),
-  mystery(dark_tapestry),
+  class_feature(_, mystery(dark_tapestry)),
   member(Skill, [disguise, intimidate, knowledge(arcana), stealth]).
 
 known_spell(Spell, mystery(dark_tapestry), SpellLevel) :-
-  class_feature(_, mystery),
-  mystery(dark_tapestry),
-  level(oracle, ClassLevel),
+  class_feature(Class, mystery(dark_tapestry)),
+  level(Class, ClassLevel),
   member(Spell-RequiredLevel, [
     entropic_shield-2,
     dust_of_twilight-4,

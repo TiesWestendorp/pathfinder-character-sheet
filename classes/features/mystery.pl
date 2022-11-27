@@ -37,3 +37,4 @@ supported(mystery(Mystery)) :- member(Mystery, [
 ]).
 
 :- [mysteries/ancestor].
+:- ["mysteries/dark tapestry"].
