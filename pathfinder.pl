@@ -107,8 +107,8 @@ feat(spell_specialization(blindness/deafness)).
 :- [items/items].
 :- [feats/feats].
 :- [spells/spells].
-:- [sheet/sheet].
 :- [traits/traits].
+:- [sheet/helpers].
 :- [validations/validations].
 
 :- use_module(library(st/st_render)).
@@ -127,12 +127,15 @@ main :-
     description(Description),
     portrait(Portrait),
     race(Race, _),
+    entity_hash(hitpoints, unsigned, Hitpoints),
     entity_hash(initiative, signed, Initiative),
     entity_hash(skill(perception), signed, Perception),
     entity_hash(base_attack_bonus, signed, Bab),
     bagof(Hash, SavingThrow^entity_hash(saving_throw(SavingThrow), signed, Hash), SavingThrows),
     bagof(Hash, ArmorClass^entity_hash(armor_class(ArmorClass), unsigned, Hash), ArmorClasses),
     bagof(Hash, Skill^entity_hash(skill(Skill), signed, Hash), Skills),
+    entity_hash(skill_ranks, unsigned, SkillRanks),
+    UsedSkillRanks = predicate_count $ skill_rank,
     Data =  _{
       general: _{
         name: Name,
@@ -144,12 +147,15 @@ main :-
         race: Race
       },
       defense: _{
+        hitpoints: Hitpoints,
         armor_classes: ArmorClasses,
         saving_throws: SavingThrows
       },
       statistics: _{
         bab: Bab,
         abilities: Abilities,
+        used_skill_ranks: UsedSkillRanks,
+        skill_ranks: SkillRanks,
         skills: Skills,
         feats: Feats,
         class_spells: []

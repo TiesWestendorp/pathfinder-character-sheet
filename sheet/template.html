@@ -38,9 +38,9 @@
         </span>
         {{ end }}
         <br />
-        <span>
+        <span title="{{= defense.hitpoints.bonuses }}">
             <dt>HP</dt>
-            <dd>TODO</dd>
+            <dd>{{= defense.hitpoints.score }}</dd>
         </span>
         <br />
         {{ each defense.saving_throws, saving_throw }}
@@ -96,9 +96,9 @@
         </span>
         <br />
 
-        <span>
+        <span title="{{= statistitcs.skill_ranks.bonuses }}">
             <dt>Skills</dt>
-            <dd></dd>
+            <dd>{{= statistics.used_skill_ranks }}/{{= statistics.skill_ranks.score }}</dd>
         </span>
         {{ each statistics.skills, skill }}
         <span title="{{= skill.bonuses }}">
